@@ -2,7 +2,7 @@
 #define BANKINGDETAIL_H
 #include <QString>
 #include <QObject>
-class BankingDetail
+class BankingDetail : public QObject
 {
     Q_OBJECT
 public:

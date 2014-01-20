@@ -33,3 +33,10 @@ unix:!symbian {
 
 INCLUDEPATH += $$PWD/../Domain
 DEPENDPATH += $$PWD/../Domain
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Domain/release/ -lDomain
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../Domain/debug/ -lDomain
+else:unix: LIBS += -L$$OUT_PWD/../Domain/ -lDomain
+
+INCLUDEPATH += $$PWD/../Domain
+DEPENDPATH += $$PWD/../Domain

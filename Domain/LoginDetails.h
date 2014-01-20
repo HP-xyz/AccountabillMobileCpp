@@ -4,8 +4,10 @@
 #include "serializable.h"
 class LoginDetails : public Serializable
 {
+    Q_OBJECT
 public:
     LoginDetails(QString username, QString password)
+        :Serializable(this)
     {
         setUserName(username);
         setPassword(password);

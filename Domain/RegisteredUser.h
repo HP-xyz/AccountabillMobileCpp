@@ -5,7 +5,8 @@
 #include <QDateTime>
 #include <QObject>
 #include <QUuid>
-class RegisteredUser
+#include <QObject>
+class RegisteredUser : public QObject
 {
     Q_OBJECT
 public:
@@ -13,7 +14,7 @@ public:
     Q_PROPERTY(QUuid UniqueReference READ UniqueReference WRITE setUniqueReference NOTIFY UniqueReferenceChanged)
     Q_PROPERTY(QDateTime ExpiryDate READ ExpiryDate WRITE setExpiryDate NOTIFY ExpiryDateChanged)
     Q_PROPERTY(QString ConfirmationCode READ ConfirmationCode WRITE setConfirmationCode NOTIFY ConfirmationCodeChanged)
-    Q_PROPERTY(BankingDetail BankingDetails READ BankingDetails WRITE setBankingDetails NOTIFY BankingDetailsChanged)
+    Q_PROPERTY(BankingDetail* BankingDetails READ BankingDetails WRITE setBankingDetails NOTIFY BankingDetailsChanged)
     Q_PROPERTY(QString CNSCustomerNumber READ CNSCustomerNumber WRITE setCNSCustomerNumber NOTIFY CNSCustomerNumberChanged)
     Q_PROPERTY(bool IsValidPassword READ IsValidPassword WRITE setIsValidPassword NOTIFY IsValidPasswordChanged)
     Q_PROPERTY(QString Surname READ Surname WRITE setSurname NOTIFY SurnameChanged)
@@ -43,7 +44,7 @@ public:
         return m_ConfirmationCode;
     }
 
-    BankingDetail BankingDetails() const
+    BankingDetail *BankingDetails() const
     {
         return m_BankingDetails;
     }
@@ -130,7 +131,7 @@ public slots:
         }
     }
 
-    void setBankingDetails(BankingDetail arg)
+    void setBankingDetails(BankingDetail *arg)
     {
         if (m_BankingDetails != arg) {
             m_BankingDetails = arg;
@@ -223,7 +224,7 @@ signals:
     void UniqueReferenceChanged(QUuid arg);
     void ExpiryDateChanged(QDateTime arg);
     void ConfirmationCodeChanged(QString arg);
-    void BankingDetailsChanged(BankingDetail arg);
+    void BankingDetailsChanged(BankingDetail *arg);
     void CNSCustomerNumberChanged(QString arg);
     void IsValidPasswordChanged(bool arg);
     void SurnameChanged(QString arg);
@@ -239,7 +240,7 @@ private:
     QUuid m_UniqueReference;
     QDateTime m_ExpiryDate;
     QString m_ConfirmationCode;
-    BankingDetail m_BankingDetails;
+    BankingDetail *m_BankingDetails;
     QString m_CNSCustomerNumber;
     bool m_IsValidPassword;
     QString m_Surname;

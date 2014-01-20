@@ -38,6 +38,6 @@ void HttpRepository::RequestFinished(QNetworkReply *reply)
    else
    {
        QByteArray data = reply->readAll();
-       emit DataRecieved(data);
+       //emit DataRecieved(data);
    }
 }

@@ -11,7 +11,8 @@ TEMPLATE = lib
 
 DEFINES += DOMAIN_LIBRARY
 
-SOURCES +=
+SOURCES += \
+    serializable.cpp
 
 HEADERS +=\
         domain_global.h \
